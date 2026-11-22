@@ -64,6 +64,17 @@ export const site = {
   },
 
   /**
+   * Google Analytics 4. The Measurement ID is public (it appears in every page's HTML),
+   * so it lives here rather than in a secret. Tracking loads only in production builds,
+   * so local development and GoDaddy previews (which run in dev mode) are not counted.
+   * NEXT_PUBLIC_GA_MEASUREMENT_ID overrides it; set this to "" to switch analytics off.
+   */
+  analytics: {
+    // GA4 property "KM Growth" → web stream https://kmgrowth.in (growthconsultingkm@gmail.com)
+    gaMeasurementId: "G-VB2WTS2LCT",
+  },
+
+  /**
    * Draft articles are labelled "Draft" on the site and marked noindex.
    * Set to false before public launch to hide every article whose
    * frontmatter still says `status: draft`.

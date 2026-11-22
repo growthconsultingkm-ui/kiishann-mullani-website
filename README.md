@@ -91,7 +91,7 @@ Copy `.env.example` to `.env.local` for local use, and add the same variables in
 | `RESEND_API_KEY` | **Required for the contact form.** Resend API key (server-side only) |
 | `CONTACT_TO_EMAIL` | Optional. Inbox for enquiries — defaults to `site.config.ts → contact.email` |
 | `CONTACT_FROM_EMAIL` | Optional. Sender on a domain verified in Resend, e.g. `KM Growth <hello@kmgrowth.in>` — defaults to `onboarding@resend.dev` |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional Google Analytics 4 ID (`G-…`). No analytics load if empty. |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional. Overrides the GA4 ID set in `site.config.ts → analytics` (already `G-VB2WTS2LCT`). |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Optional Google Search Console HTML-tag token |
 
 ### Contact form — how to connect it
@@ -115,7 +115,12 @@ Hidden in production until connected. When you pick a provider (Buttondown, Kit/
 
 ### Analytics
 
-Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to enable GA4. Before you do, update the Privacy page and consider a consent banner: review India's DPDP Act 2023 and the laws of other regions where you have visitors.
+Google Analytics 4 is connected: property **KM Growth** (Google account growthconsultingkm@gmail.com), web stream `https://kmgrowth.in`, Measurement ID `G-VB2WTS2LCT`, set in `site.config.ts → analytics.gaMeasurementId`.
+
+- Tracking loads only in production builds, so local `npm run dev` and GoDaddy previews (which run in dev mode) don't count as visits.
+- Page views (including in-site navigation), scrolls and outbound clicks are measured automatically by GA4 enhanced measurement.
+- A successful contact-form enquiry sends a `generate_lead` event. In GA → Admin → Key events, mark `generate_lead` as a key event to track enquiries as conversions.
+- To switch analytics off, set `gaMeasurementId: ""`. The Privacy page already names Google Analytics; consider adding a cookie-consent banner and review India's DPDP Act 2023 and the laws of other regions where you have visitors.
 
 ---
 

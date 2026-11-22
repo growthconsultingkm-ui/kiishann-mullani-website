@@ -41,9 +41,14 @@ export default function PrivacyPage() {
                 organisation (optional), enquiry type and message.
               </li>
               <li>
-                <strong>Analytics (only if enabled).</strong> If website analytics are switched on, aggregated usage
-                information such as pages visited, device type and approximate location may be collected through cookies
-                or similar technologies.
+                <strong>Analytics.</strong> This website uses Google Analytics 4 to understand how it is used — for
+                example which pages are viewed, how visitors arrived, their device and browser type, and their
+                approximate location (country or city). Google Analytics sets cookies to do this. You can opt out with
+                Google&apos;s{" "}
+                <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">
+                  Analytics opt-out browser add-on
+                </a>{" "}
+                or by blocking cookies in your browser.
               </li>
             </ul>
             <h2>How it is used</h2>
@@ -53,9 +58,9 @@ export default function PrivacyPage() {
             </p>
             <h2>Service providers</h2>
             <p>
-              The website may use trusted providers to host the site, deliver form messages by email and, if enabled,
-              measure site usage. These providers process data on the site owner&apos;s behalf. [Provider names to be
-              confirmed.]
+              The website uses trusted providers that process data on the site owner&apos;s behalf: GoDaddy (website
+              hosting), Resend (delivering contact-form messages by email, once enabled) and Google Analytics (measuring
+              site usage).
             </p>
             <h2>How long it is kept</h2>
             <p>

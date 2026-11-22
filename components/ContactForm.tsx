@@ -94,6 +94,11 @@ export function ContactForm({ configured, fallbackUrl, fallbackLabel, email }: P
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (res.ok && data.ok) {
         setStatus("success");
+        // Google Analytics key-event candidate: a successful enquiry.
+        (window as Window & { gtag?: (...args: unknown[]) => void }).gtag?.("event", "generate_lead", {
+          form: "contact",
+          enquiry_type: fields.type,
+        });
         requestAnimationFrame(() => resultRef.current?.focus());
       } else {
         setStatus("error");

@@ -37,7 +37,9 @@ const jetbrains = localFont({
 });
 
 const siteUrl = getSiteUrl();
-const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const gaId = (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || site.analytics.gaMeasurementId).trim();
+// Only real production traffic is measured; the ID format is checked before it reaches the page.
+const loadAnalytics = process.env.NODE_ENV === "production" && /^G-[A-Z0-9]+$/.test(gaId);
 const gscToken = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 export const metadata: Metadata = {
@@ -128,11 +130,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <RevealObserver />
         <JsonLd data={personSchema} />
-        {gaId && (
+        {loadAnalytics && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
             <Script id="ga4" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}',{anonymize_ip:true});`}
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
             </Script>
           </>
         )}
