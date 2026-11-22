@@ -6,7 +6,8 @@ export function getSiteUrl(): string {
   if (explicit) return explicit;
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   if (vercel) return `https://${vercel}`;
-  return "http://localhost:3000";
+  // Production fallback: the live domain (override with NEXT_PUBLIC_SITE_URL).
+  return process.env.NODE_ENV === "production" ? "https://kmgrowth.in" : "http://localhost:3000";
 }
 
 export const isDev = process.env.NODE_ENV !== "production";

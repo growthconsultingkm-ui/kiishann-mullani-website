@@ -5,6 +5,10 @@ import { ContactForm } from "@/components/ContactForm";
 import { DevNote } from "@/components/DevNote";
 import { SectionLabel } from "@/components/SectionLabel";
 
+// Read contact-form credentials at request time, so adding them in the host's
+// secrets panel turns the form on without a rebuild.
+export const dynamic = "force-dynamic";
+
 export const metadata = pageMetadata({
   title: "Contact",
   description:

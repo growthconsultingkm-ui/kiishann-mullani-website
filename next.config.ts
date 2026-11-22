@@ -9,6 +9,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // GoDaddy Node.js Hosting serves private previews from *.airoapp.ai in dev mode.
+  allowedDevOrigins: ["**.airoapp.ai"],
   images: {
     formats: ["image/avif", "image/webp"],
   },
