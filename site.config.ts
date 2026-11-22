@@ -30,15 +30,18 @@ export const site = {
 
   /** Contact details. Leave "" to hide. Never put private numbers here. */
   contact: {
-    /** TO CONFIRM — preferred public email (KM Growth's site currently lists a Gmail address). */
-    email: "",
+    /** Public email shown on the Contact page, footer and contact-form notice. */
+    email: "growthconsultingkm@gmail.com",
     /** TO CONFIRM — optional. */
     phone: "",
     /** TO CONFIRM — Calendly / Cal.com / Google booking link. When set, a "Book a call" button appears. */
     bookingUrl: "",
-    /** A working enquiry route that exists today, used while the site's own form awaits setup. */
-    fallbackEnquiryUrl: "https://kmgrowth.in/connect.html",
-    fallbackEnquiryLabel: "KM Growth enquiry page",
+    /**
+     * Optional external enquiry page, shown while the site's own form awaits setup.
+     * Left empty because this site now lives on kmgrowth.in, so the email above is used instead.
+     */
+    fallbackEnquiryUrl: "",
+    fallbackEnquiryLabel: "",
   },
 
   /** TO CONFIRM — social profiles. Links with an empty url are not rendered. */
@@ -91,7 +94,8 @@ export const site = {
     {
       name: "KM Growth Consulting",
       url: "https://kmgrowth.in/",
-      show: true,
+      // Hidden: this site now lives on kmgrowth.in, so the block would link to itself.
+      show: false,
       primary: true,
       role: "Growth consultancy",
       description:

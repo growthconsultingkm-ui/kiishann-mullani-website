@@ -137,26 +137,33 @@ export function ContactForm({ configured, fallbackUrl, fallbackLabel, email }: P
           <div className="text-[0.95rem] leading-relaxed text-ink/85">
             <p className="font-medium text-ink">This form is awaiting setup and can't send messages yet.</p>
             <p className="mt-1">
-              Until it's connected, please use the{" "}
-              <a
-                href={fallbackUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-accent-deep underline underline-offset-2"
-              >
-                {fallbackLabel}
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+              {fallbackUrl ? (
+                <>
+                  Until it&apos;s connected, please use the{" "}
+                  <a
+                    href={fallbackUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-accent-deep underline underline-offset-2"
+                  >
+                    {fallbackLabel}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  {email ? " or email " : "."}
+                </>
+              ) : email ? (
+                <>Until it&apos;s connected, please email </>
+              ) : (
+                <>Please check back soon.</>
+              )}
               {email ? (
                 <>
-                  {" "}
-                  or email{" "}
                   <a href={`mailto:${email}`} className="font-medium text-accent-deep underline underline-offset-2">
                     {email}
                   </a>
+                  .
                 </>
               ) : null}
-              .
             </p>
           </div>
         </div>

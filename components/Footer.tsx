@@ -76,24 +76,26 @@ export function Footer() {
           )}
         </div>
 
-        <div className="md:col-span-2">
-          <h2 className="kicker text-mist">Ventures</h2>
-          <ul className="mt-5 space-y-3">
-            {visibleVentures.map((v) => (
-              <li key={v.name}>
-                <a
-                  href={v.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline text-paper/85 hover:text-paper"
-                >
-                  {v.name} <span aria-hidden>↗</span>
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {visibleVentures.length > 0 && (
+          <div className="md:col-span-2">
+            <h2 className="kicker text-mist">Ventures</h2>
+            <ul className="mt-5 space-y-3">
+              {visibleVentures.map((v) => (
+                <li key={v.name}>
+                  <a
+                    href={v.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline text-paper/85 hover:text-paper"
+                  >
+                    {v.name} <span aria-hidden>↗</span>
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="wrap flex flex-col gap-3 pb-6 text-sm text-mist sm:flex-row sm:items-center sm:justify-between">

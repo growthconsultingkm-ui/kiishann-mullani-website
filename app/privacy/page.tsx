@@ -32,7 +32,7 @@ export default function PrivacyPage() {
             <h2>Who this covers</h2>
             <p>
               This notice explains how personal information is handled on {site.name}&apos;s personal website. It does
-              not cover other websites linked from here, including KM Growth Consulting, which have their own policies.
+              not cover other websites linked from here, which have their own policies.
             </p>
             <h2>What is collected</h2>
             <ul>
