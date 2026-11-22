@@ -109,7 +109,7 @@ export default function ContactPage() {
                 ))}
               <DevNote>
                 Add a public email, booking link and social URLs in site.config.ts → contact / socials. Connect the form
-                by setting RESEND_API_KEY, CONTACT_TO_EMAIL and CONTACT_FROM_EMAIL (see README).
+                by setting RESEND_API_KEY (see README); enquiries are emailed to contact.email.
               </DevNote>
             </div>
           </div>

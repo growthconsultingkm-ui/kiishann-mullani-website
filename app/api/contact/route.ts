@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { enquiryTypes } from "@/site.config";
+import { getContactDelivery } from "@/lib/site";
 
 /**
  * Contact form endpoint.
  * - Validates and sanitises everything on the server.
  * - Spam protection: honeypot field, minimum fill time, per-IP rate limit.
- * - Delivers via Resend's REST API only when RESEND_API_KEY, CONTACT_TO_EMAIL
- *   and CONTACT_FROM_EMAIL are set. Otherwise it answers 503 "not configured"
- *   — it never pretends a message was sent.
+ * - Delivers via Resend's REST API to the site's contact email (see
+ *   getContactDelivery) once RESEND_API_KEY is set. Otherwise it answers 503
+ *   "not configured" — it never pretends a message was sent.
  */
 
 const WINDOW_MS = 10 * 60 * 1000;
@@ -71,10 +72,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: `Please check: ${errors.join(", ")}.` }, { status: 422 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  if (!apiKey || !to || !from) {
+  const { apiKey, to, from, configured } = getContactDelivery();
+  if (!configured) {
     return NextResponse.json(
       {
         ok: false,

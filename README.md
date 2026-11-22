@@ -88,9 +88,9 @@ Copy `.env.example` to `.env.local` for local use, and add the same variables in
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Final domain, e.g. `https://www.yourdomain.com`. Used for canonical URLs, sitemap and social previews. **Set this before launch.** |
-| `RESEND_API_KEY` | Resend API key (server-side only) for contact form delivery |
-| `CONTACT_TO_EMAIL` | Inbox that receives enquiries |
-| `CONTACT_FROM_EMAIL` | Sender on a domain verified in Resend, e.g. `Website <hello@yourdomain.com>` |
+| `RESEND_API_KEY` | **Required for the contact form.** Resend API key (server-side only) |
+| `CONTACT_TO_EMAIL` | Optional. Inbox for enquiries — defaults to `site.config.ts → contact.email` |
+| `CONTACT_FROM_EMAIL` | Optional. Sender on a domain verified in Resend, e.g. `KM Growth <hello@kmgrowth.in>` — defaults to `onboarding@resend.dev` |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional Google Analytics 4 ID (`G-…`). No analytics load if empty. |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Optional Google Search Console HTML-tag token |
 
@@ -98,12 +98,16 @@ Copy `.env.example` to `.env.local` for local use, and add the same variables in
 
 The form validates input in the browser **and** on the server, has spam protection (hidden honeypot, minimum fill time, per-IP rate limit), and is **clearly marked "awaiting setup"** until delivery is configured. It never pretends to send.
 
-1. Create a free account at <https://resend.com> and verify your domain (add the DNS records it shows you).
-2. Create an API key.
-3. Set `RESEND_API_KEY`, `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` in your host, then redeploy (the Contact page reads these at build time).
-4. Send yourself a test enquiry from the live site.
+Every enquiry is emailed to `site.config.ts → contact.email` (growthconsultingkm@gmail.com), with the visitor's address as reply-to, so you can answer straight from Gmail.
 
-Until then, the form directs visitors to the KM Growth enquiry page (`site.config.ts → contact.fallbackEnquiryUrl`).
+1. Create a free account at <https://resend.com> **signed up with growthconsultingkm@gmail.com**. Until a domain is verified, Resend's shared sender only delivers to the account's own email.
+2. Create an API key (API Keys → Create, "Sending access").
+3. Add `RESEND_API_KEY` in your host's environment variables, then restart or redeploy.
+4. Send a test enquiry from the live site and check Gmail, including Spam the first time (mark it "Not spam").
+
+Recommended later: verify `kmgrowth.in` in Resend (Domains → add its DNS records in GoDaddy), then set `CONTACT_FROM_EMAIL="KM Growth <hello@kmgrowth.in>"` for better inbox placement.
+
+Until the key is set, the form is marked "awaiting setup" and points visitors to the email address instead.
 
 ### Newsletter
 
